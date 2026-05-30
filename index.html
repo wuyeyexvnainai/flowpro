@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs via Proximalized Preference Optimization. Project page.">
+  <meta property="og:title" content="FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs"/>
+  <meta property="og:description" content="A reward-free offline reinforced fine-tuning framework for flow-matching Vision-Language-Action models, using preference optimization with an explicit proximal regularizer."/>
+  <meta property="og:url" content="https://wuyeyexvnainai.github.io/flowpro/"/>
+  <meta property="og:image" content="static/images/overview_pipeline.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs">
+  <meta name="twitter:description" content="A reward-free offline reinforced fine-tuning framework for flow-matching VLAs.">
+  <meta name="twitter:image" content="static/images/overview_pipeline.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="FlowPRO, RPRO, Flow Matching, VLA, Vision-Language-Action, Preference Optimization, DPO, PRO, Robot Manipulation, Reinforcement Learning, CoRL 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs via Proximalized Preference Optimization</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <style>
+    /* ---------- Coming-soon toast ---------- */
+    #cs-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(20, 20, 20, 0.92);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-family: 'Google Sans', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 9999;
+    }
+    #cs-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    /* slightly tighter author spacing on small screens */
+    .publication-authors .author-block { margin-right: 0.4em; }
+    .publication-links .link-block { margin: 4px; }
+    /* video placeholder card */
+    .video-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #1f2933 0%, #3b4a59 100%);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #e8eef5;
+      font-family: 'Google Sans', sans-serif;
+      text-align: center;
+      padding: 16px;
+    }
+    .video-placeholder .icon-big {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      opacity: 0.85;
+    }
+    .video-placeholder .label-main {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .video-placeholder .label-sub {
+      font-size: 0.85rem;
+      opacity: 0.75;
+      margin-top: 6px;
+    }
+    /* Tighter pipeline figure on wide screens */
+    section .pipeline-figure {
+      max-width: 1100px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+    .bibtex-block {
+      background: #f5f5f7;
+      padding: 18px 22px;
+      border-radius: 8px;
+      font-family: 'Source Code Pro', 'Courier New', monospace;
+      font-size: 0.92rem;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      border: 1px solid #e4e4e7;
+    }
+    .copy-btn {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ======================================================== Hero / Title ======================================================== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">
+            FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs via Proximalized Preference Optimization
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block" style="margin: 0 0.5em;">Yihao Wu<sup>1,3</sup></span>
+            <span class="author-block" style="margin: 0 0.5em;">He Zhang<sup>1,2*</sup></span>
+            <span class="author-block" style="margin: 0 0.5em;">Junbo Tan<sup>3</sup></span>
+            <span class="author-block" style="margin: 0 0.5em;">Xueqian Wang<sup>3</sup></span>
+            <span class="author-block" style="margin: 0 0.5em;">Zhengyou Zhang<sup>1,2</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 0.2em;">
+            <span class="author-block" style="margin: 0 0.4em;"><sup>1</sup>Tencent Robotics X,</span>
+            <span class="author-block" style="margin: 0 0.4em;"><sup>2</sup>Futian Laboratory,</span>
+            <span class="author-block" style="margin: 0 0.4em;"><sup>3</sup>Tsinghua University</span>
+          </div>
+
+          <div class="is-size-6 publication-authors" style="margin-top: 0.25em;">
+            <span><sup>*</sup>Corresponding author</span>
+          </div>
+
+          <!-- <div class="is-size-5 publication-authors" style="margin-top: 0.6em; color:#777;">
+            <span>Submitted to CoRL 2026</span>
+          </div> -->
+
+          <!-- Action buttons -->
+          <div class="column has-text-centered" style="margin-top: 1.2em;">
+            <div class="publication-links">
+
+              <!-- Paper PDF (Coming Soon) -->
+              <span class="link-block">
+                <a href="#" onclick="showComingSoon(event, 'Paper PDF will be released soon.')"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- arXiv (placeholder) -->
+              <span class="link-block">
+                <a href="#" onclick="showComingSoon(event, 'arXiv link will be available soon.')"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Code (Coming Soon) -->
+              <span class="link-block">
+                <a href="#" onclick="showComingSoon(event, 'Code release: Coming soon!')"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <!-- BibTeX -->
+              <span class="link-block">
+                <a href="#bibtex"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-quote-left"></i></span>
+                  <span>BibTeX</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== Teaser figure (pipeline) ======================================================== -->
+<section class="hero teaser">
+  <div class="hero-body">
+    <!-- Wide image: centered to viewport, can exceed the desktop container -->
+    <div class="has-text-centered" style="padding: 0 1rem;">
+      <img src="static/images/overview_pipeline.png" alt="FlowPRO overview pipeline" class="pipeline-figure">
+    </div>
+    <!-- Caption: kept at desktop width for readability -->
+    <div class="container is-max-desktop">
+      <div class="columns is-centered" style="margin-top: 0.5em;">
+        <div class="column is-four-fifths">
+          <p class="content has-text-justified">
+            <strong>Overview of the FlowPRO framework.</strong>
+            <strong>(a) SFT Base Model:</strong> Stage 1 trains <em>&pi;<sub>&theta;</sub></em> on <em>D</em><sub>SFT</sub>.
+            <strong>(b) Data Collection:</strong> operator-triggered rollback and operator teleoperation yield paired positive and negative trajectories <em>(&tau;<sup>w</sup>, &tau;<sup>l</sup>)</em>.
+            <strong>(c) Preference Dataset:</strong> pairs are aggregated into <em>D</em><sub>pref</sub><sup>k</sup>.
+            <strong>(d) Smooth Interpolation:</strong> Bézier interpolation synthesizes the missing counterpart at action-chunk granularity (e.g., <em>M</em>&rarr;<em>J</em>, <em>J</em>&rarr;<em>N&prime;</em>), producing dense per-state tuples.
+            <strong>(e) Algorithm (RPRO):</strong> <em>a<sup>&theta;</sup>, a<sup>ref</sup></em> from <em>&pi;<sub>&theta;</sub></em> and frozen <em>&pi;<sub>ref</sub></em> are compared against <em>a<sup>w</sup>/a<sup>l</sup></em> to drive <em>r<sup>w</sup></em>&uarr;, <em>r<sup>l</sup></em>&darr;, optimized on a mixed batch of <em>D</em><sub>pref</sub><sup>k</sup>, <em>D</em><sub>pref</sub><sup>&lt;k</sup>, and <em>D</em><sub>SFT</sub>; the updated policy is redeployed for <em>K</em> rounds.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== Abstract ======================================================== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Post-training Vision-Language-Action (VLA) models into policies that can be reliably deployed on real robots remains a major bottleneck. SFT and DAgger exploit failure signals only indirectly, and reward-based RL is bottlenecked by the difficulty of real-world reward design and of training reliable critics. We present <strong>FlowPRO</strong>, a reward-free offline reinforced fine-tuning framework for flow-matching VLAs. Algorithmically, we propose <strong>RPRO</strong> (<em>Robotic Flow-matching Proximalized Preference Optimization</em>), a preference-optimization objective tailored to the flow-matching action head of VLA models. RPRO pairs a contrastive optimizer with an explicit proximal regularizer that anchors the absolute magnitude of the implicit reward, thereby eliminating the reward-hacking failure mode of plain Flow-DPO. On the data side, a teleoperated intervention-and-rollback paradigm produces naturally paired positive and negative trajectories <em>(&tau;<sup>w</sup>, &tau;<sup>l</sup>)</em> on a real robot from a single operator action; a Smooth Interpolation procedure, combined with batch mixing, then converts these sparse corrections into dense per-state supervision while preserving the base policy's capabilities. On four long-horizon bimanual tasks, FlowPRO attains the highest success rate, outperforming four representative baselines, and ablations confirm the contribution of each loss component.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== Method overview ======================================================== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Method Overview</h2>
+      <div class="content has-text-justified">
+        <p>
+          FlowPRO is a two-stage framework. <strong>Stage 1</strong> performs supervised fine-tuning on a task-specific dataset to obtain a base policy from a flow-matching VLA backbone. <strong>Stage 2</strong> then runs an iterative offline-RL loop on top of it for <em>K</em> rounds. In each round, three components work together:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Intervention-and-Rollback Data Collection.</strong>
+            A human operator teleoperates corrections only when the policy is about to fail, then rolls the robot back along the recorded trajectory and lets the policy retry. A single operator action produces a naturally paired trajectory <em>(&tau;<sup>w</sup>, &tau;<sup>l</sup>)</em>, while the rollback horizon &Delta; diversifies the per-pair initial state.
+          </li>
+          <li>
+            <strong>Smooth Interpolation.</strong>
+            Sparse trajectory-level corrections are converted into dense per-state preference tuples by synthesizing the missing counterpart at each state via a smooth Bézier interpolation, preserving the base policy's local distribution.
+          </li>
+          <li>
+            <strong>RPRO Loss.</strong>
+            The full RPRO objective combines a flow-matching adaptation of PRO with a supervised regression term:
+            <em>L<sub>RPRO</sub> = &lambda;<sub>PRO</sub> &middot; L<sub>PRO</sub> + &lambda;<sub>SFT</sub> &middot; L<sub>SFT</sub></em>.
+            The proximal regularizer in <em>L<sub>PRO</sub></em> anchors the absolute magnitude of the implicit reward at <em>r &approx; 0</em>, eliminating the reward-hacking failure mode of plain Flow-DPO. A gradient-vanishing property further makes preference pairs and SFT demonstrations compatible under a single loss.
+          </li>
+        </ul>
+
+        <!-- <p style="margin-top: 1.2em;">
+          The figure below illustrates the Smooth Interpolation procedure that turns trajectory-level corrections into dense per-state supervision.
+        </p> -->
+        <!-- <img src="static/images/smooth_interpolation.png" alt="Smooth Interpolation" class="pipeline-figure" style="max-width: 900px;"> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== Experimental Tasks ======================================================== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Real-Robot Tasks</h2>
+    <div class="content has-text-justified">
+      <p>
+        We evaluate FlowPRO on four long-horizon bimanual tasks on a Dobot XTrainer platform &mdash; <strong>Pack</strong> (cosmetic packaging), <strong>Cap</strong> (pen-cap assembly), <strong>USB</strong> (USB insertion), and <strong>Case</strong> (pencil-case packing) &mdash; each evaluated with 100 rollouts on top of two flow-matching VLA backbones (&pi;<sub>0</sub> and &pi;<sub>0.5</sub>).
+      </p>
+      <img src="static/images/experiment_task.png" alt="Real-robot tasks" class="pipeline-figure" style="max-width: 1000px;">
+      <!-- <p style="margin-top: 1em;">
+        Hardware: Dobot XTrainer dual-arm platform with three RGB cameras and a Meta Quest 3 used by the teleoperator for the intervention-and-rollback procedure.
+      </p> -->
+      <!-- <img src="static/images/experiment_setup.png" alt="Experiment setup" class="pipeline-figure" style="max-width: 800px;"> -->
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== Videos placeholder ======================================================== -->
+<section class="hero" id="videos">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Real-Robot Demos</h2>
+      <p class="has-text-centered" style="color:#666; margin-bottom: 1.6em;">
+        Demo videos will be released alongside the paper. The grid below previews where the rollouts of the four tasks will appear.
+      </p>
+
+      <div class="columns is-multiline">
+        <div class="column is-half">
+          <div class="video-placeholder">
+            <span class="icon-big"><i class="fas fa-play-circle"></i></span>
+            <div class="label-main">Pack &mdash; cosmetic packaging</div>
+            <div class="label-sub">Demo coming soon</div>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="video-placeholder">
+            <span class="icon-big"><i class="fas fa-play-circle"></i></span>
+            <div class="label-main">Cap &mdash; pen-cap assembly</div>
+            <div class="label-sub">Demo coming soon</div>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="video-placeholder">
+            <span class="icon-big"><i class="fas fa-play-circle"></i></span>
+            <div class="label-main">USB &mdash; USB insertion</div>
+            <div class="label-sub">Demo coming soon</div>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="video-placeholder">
+            <span class="icon-big"><i class="fas fa-play-circle"></i></span>
+            <div class="label-main">Case &mdash; pencil-case packing</div>
+            <div class="label-sub">Demo coming soon</div>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        ===== When videos are ready, replace each .video-placeholder block above with:
+
+        <div class="publication-video">
+          <iframe width="560" height="315"
+                  src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                  title="FlowPRO Pack demo"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+        </div>
+      -->
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== BibTeX ======================================================== -->
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre id="bibtex-text" class="bibtex-block">@inproceedings{wu2026flowpro,
+  title     = {FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs via Proximalized Preference Optimization},
+  author    = {Wu, Yihao and Zhang, He and Tan, Junbo and Wang, Xueqian and Zhang, Zhengyou},
+  <!-- booktitle = {Conference on Robot Learning (CoRL)}, -->
+  year      = {2026},
+  note      = {Under review}
+}</pre>
+    <button class="button is-small is-rounded copy-btn" onclick="copyBibtex()">
+      <span class="icon"><i class="fas fa-copy"></i></span>
+      <span>Copy BibTeX</span>
+    </button>
+  </div>
+</section>
+
+<!-- ======================================================== Footer ======================================================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-12">
+        <div class="content has-text-centered">
+          <p>
+            &copy; 2026 The FlowPRO Authors. Page based on the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+            originally adapted from <a href="https://nerfies.github.io/" target="_blank">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Coming-soon toast -->
+<div id="cs-toast">Coming soon!</div>
+
+<script>
+  function showComingSoon(e, msg) {
+    if (e) e.preventDefault();
+    var t = document.getElementById('cs-toast');
+    if (!t) return;
+    t.textContent = msg || 'Coming soon!';
+    t.classList.add('show');
+    clearTimeout(window.__csTimer);
+    window.__csTimer = setTimeout(function () { t.classList.remove('show'); }, 1800);
+  }
+
+  function copyBibtex() {
+    var text = document.getElementById('bibtex-text').innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      showComingSoon(null, 'BibTeX copied to clipboard ✓');
+    }, function () {
+      showComingSoon(null, 'Copy failed — please select manually.');
+    });
+  }
+</script>
+
+</body>
+</html>
