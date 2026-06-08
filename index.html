@@ -160,9 +160,9 @@
                 </a>
               </span>
 
-              <!-- arXiv (placeholder) -->
+              <!-- arXiv -->
               <span class="link-block">
-                <a href="#" onclick="showComingSoon(event, 'arXiv link will be available soon.')"
+                <a href="https://arxiv.org/abs/2606.05468" target="_blank" rel="noopener noreferrer"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv</span>
@@ -195,27 +195,23 @@
   </div>
 </section>
 
-<!-- ======================================================== Teaser figure (pipeline) ======================================================== -->
+<!-- ======================================================== Teaser video (YouTube) ======================================================== -->
 <section class="hero teaser">
   <div class="hero-body">
-    <!-- Wide image: centered to viewport, can exceed the desktop container -->
-    <div class="has-text-centered" style="padding: 0 1rem;">
-      <img src="static/images/overview_pipeline.png" alt="FlowPRO overview pipeline" class="pipeline-figure">
-    </div>
-    <!-- Caption: kept at desktop width for readability -->
     <div class="container is-max-desktop">
-      <div class="columns is-centered" style="margin-top: 0.5em;">
-        <div class="column is-four-fifths">
-          <p class="content has-text-justified">
-            <strong>Overview of the FlowPRO framework.</strong>
-            <strong>(a) SFT Base Model:</strong> Stage 1 trains <em>&pi;<sub>&theta;</sub></em> on <em>D</em><sub>SFT</sub>.
-            <strong>(b) Data Collection:</strong> operator-triggered rollback and operator teleoperation yield paired positive and negative trajectories <em>(&tau;<sup>w</sup>, &tau;<sup>l</sup>)</em>.
-            <strong>(c) Preference Dataset:</strong> pairs are aggregated into <em>D</em><sub>pref</sub><sup>k</sup>.
-            <strong>(d) Smooth Interpolation:</strong> Bézier interpolation synthesizes the missing counterpart at action-chunk granularity (e.g., <em>M</em>&rarr;<em>J</em>, <em>J</em>&rarr;<em>N&prime;</em>), producing dense per-state tuples.
-            <strong>(e) Algorithm (RPRO):</strong> <em>a<sup>&theta;</sup>, a<sup>ref</sup></em> from <em>&pi;<sub>&theta;</sub></em> and frozen <em>&pi;<sub>ref</sub></em> are compared against <em>a<sup>w</sup>/a<sup>l</sup></em> to drive <em>r<sup>w</sup></em>&uarr;, <em>r<sup>l</sup></em>&darr;, optimized on a mixed batch of <em>D</em><sub>pref</sub><sup>k</sup>, <em>D</em><sub>pref</sub><sup>&lt;k</sup>, and <em>D</em><sub>SFT</sub>; the updated policy is redeployed for <em>K</em> rounds.
-          </p>
-        </div>
+      <div class="publication-video"
+           style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.12);">
+        <iframe
+          src="https://www.youtube.com/embed/oE8trT_mrEw?rel=0"
+          title="FlowPRO teaser video"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
       </div>
+      <p class="has-text-centered" style="margin-top: 0.9em; color:#666; font-size: 0.95rem;">
+        Teaser &mdash; an overview of FlowPRO on real-robot bimanual manipulation tasks.
+      </p>
     </div>
   </div>
 </section>
@@ -239,9 +235,16 @@
 <!-- ======================================================== Method overview ======================================================== -->
 <section class="hero">
   <div class="hero-body">
+    <!-- Title -->
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Method Overview</h2>
-      <div class="content has-text-justified">
+    </div>
+
+    <!-- Pipeline figure + caption + body text: all kept at desktop container width -->
+    <div class="container is-max-desktop">
+
+
+      <div class="content has-text-justified" style="margin-top: 1.5em;">
         <p>
           FlowPRO is a two-stage framework. <strong>Stage 1</strong> performs supervised fine-tuning on a task-specific dataset to obtain a base policy from a flow-matching VLA backbone. <strong>Stage 2</strong> then runs an iterative offline-RL loop on top of it for <em>K</em> rounds. In each round, three components work together:
         </p>
@@ -262,12 +265,31 @@
             The proximal regularizer in <em>L<sub>PRO</sub></em> anchors the absolute magnitude of the implicit reward at <em>r &approx; 0</em>, eliminating the reward-hacking failure mode of plain Flow-DPO. A gradient-vanishing property further makes preference pairs and SFT demonstrations compatible under a single loss.
           </li>
         </ul>
-
         <!-- <p style="margin-top: 1.2em;">
           The figure below illustrates the Smooth Interpolation procedure that turns trajectory-level corrections into dense per-state supervision.
         </p> -->
         <!-- <img src="static/images/smooth_interpolation.png" alt="Smooth Interpolation" class="pipeline-figure" style="max-width: 900px;"> -->
       </div>
+      
+      <!-- Figure: same width as the body text below -->
+      <div class="has-text-centered" style="margin-top: 1em;">
+        <img src="static/images/overview_pipeline.png" alt="FlowPRO overview pipeline"
+             class="pipeline-figure" style="max-width: 100%;">
+      </div>
+
+      <div class="columns is-centered" style="margin-top: 0.5em;">
+        <div class="column is-four-fifths">
+          <p class="content has-text-justified">
+            <strong>Overview of the FlowPRO framework.</strong>
+            <strong>(a) SFT Base Model:</strong> Stage 1 trains <em>&pi;<sub>&theta;</sub></em> on <em>D</em><sub>SFT</sub>.
+            <strong>(b) Data Collection:</strong> operator-triggered rollback and operator teleoperation yield paired positive and negative trajectories <em>(&tau;<sup>w</sup>, &tau;<sup>l</sup>)</em>.
+            <strong>(c) Preference Dataset:</strong> pairs are aggregated into <em>D</em><sub>pref</sub><sup>k</sup>.
+            <strong>(d) Smooth Interpolation:</strong> Bézier interpolation synthesizes the missing counterpart at action-chunk granularity (e.g., <em>M</em>&rarr;<em>J</em>, <em>J</em>&rarr;<em>N&prime;</em>), producing dense per-state tuples.
+            <strong>(e) Algorithm (RPRO):</strong> <em>a<sup>&theta;</sup>, a<sup>ref</sup></em> from <em>&pi;<sub>&theta;</sub></em> and frozen <em>&pi;<sub>ref</sub></em> are compared against <em>a<sup>w</sup>/a<sup>l</sup></em> to drive <em>r<sup>w</sup></em>&uarr;, <em>r<sup>l</sup></em>&darr;, optimized on a mixed batch of <em>D</em><sub>pref</sub><sup>k</sup>, <em>D</em><sub>pref</sub><sup>&lt;k</sup>, and <em>D</em><sub>SFT</sub>; the updated policy is redeployed for <em>K</em> rounds.
+          </p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -352,7 +374,7 @@
     <pre id="bibtex-text" class="bibtex-block">@inproceedings{wu2026flowpro,
   title     = {FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs via Proximalized Preference Optimization},
   author    = {Wu, Yihao and Zhang, He and Tan, Junbo and Wang, Xueqian and Zhang, Zhengyou},
-  <!-- booktitle = {Conference on Robot Learning (CoRL)}, -->
+  booktitle = {arXiv preprint arXiv:2606.05468},
   year      = {2026},
   note      = {Under review}
 }</pre>
