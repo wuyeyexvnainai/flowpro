@@ -7,3 +7,9 @@ Thumbs.db
 # Build artifacts (none expected for a static site)
 *.log
 node_modules/
+
+# Local-only video originals & quality-check artefacts (do not push)
+static/videos/_originals_hevc/
+static/videos/_quality_check/
+static/videos/*.tmp.mp4
+

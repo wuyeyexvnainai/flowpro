@@ -151,9 +151,9 @@
           <div class="column has-text-centered" style="margin-top: 1.2em;">
             <div class="publication-links">
 
-              <!-- Paper PDF (Coming Soon) -->
+              <!-- Paper PDF -->
               <span class="link-block">
-                <a href="#" onclick="showComingSoon(event, 'Paper PDF will be released soon.')"
+                <a href="static/pdfs/2606.05468v1.pdf" target="_blank" rel="noopener noreferrer"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
@@ -277,18 +277,14 @@
              class="pipeline-figure" style="max-width: 100%;">
       </div>
 
-      <div class="columns is-centered" style="margin-top: 0.5em;">
-        <div class="column is-four-fifths">
-          <p class="content has-text-justified">
-            <strong>Overview of the FlowPRO framework.</strong>
-            <strong>(a) SFT Base Model:</strong> Stage 1 trains <em>&pi;<sub>&theta;</sub></em> on <em>D</em><sub>SFT</sub>.
-            <strong>(b) Data Collection:</strong> operator-triggered rollback and operator teleoperation yield paired positive and negative trajectories <em>(&tau;<sup>w</sup>, &tau;<sup>l</sup>)</em>.
-            <strong>(c) Preference Dataset:</strong> pairs are aggregated into <em>D</em><sub>pref</sub><sup>k</sup>.
-            <strong>(d) Smooth Interpolation:</strong> Bézier interpolation synthesizes the missing counterpart at action-chunk granularity (e.g., <em>M</em>&rarr;<em>J</em>, <em>J</em>&rarr;<em>N&prime;</em>), producing dense per-state tuples.
-            <strong>(e) Algorithm (RPRO):</strong> <em>a<sup>&theta;</sup>, a<sup>ref</sup></em> from <em>&pi;<sub>&theta;</sub></em> and frozen <em>&pi;<sub>ref</sub></em> are compared against <em>a<sup>w</sup>/a<sup>l</sup></em> to drive <em>r<sup>w</sup></em>&uarr;, <em>r<sup>l</sup></em>&darr;, optimized on a mixed batch of <em>D</em><sub>pref</sub><sup>k</sup>, <em>D</em><sub>pref</sub><sup>&lt;k</sup>, and <em>D</em><sub>SFT</sub>; the updated policy is redeployed for <em>K</em> rounds.
-          </p>
-        </div>
-      </div>
+      <p class="has-text-centered" style="color:#777; font-size: 0.88rem; margin-top: 0.3em;">
+        <strong style="color:#777;">Figure 1. Overview of the FlowPRO framework.</strong>
+        <strong style="color:#777;">(a) SFT Base Model:</strong> Stage 1 trains <em>&pi;<sub>&theta;</sub></em> on <em>D</em><sub>SFT</sub>.
+        <strong style="color:#777;">(b) Data Collection:</strong> operator-triggered rollback and operator teleoperation yield paired positive and negative trajectories <em>(&tau;<sup>w</sup>, &tau;<sup>l</sup>)</em>.
+        <strong style="color:#777;">(c) Preference Dataset:</strong> pairs are aggregated into <em>D</em><sub>pref</sub><sup>k</sup>.
+        <strong style="color:#777;">(d) Smooth Interpolation:</strong> Bézier interpolation synthesizes the missing counterpart at action-chunk granularity (e.g., <em>M</em>&rarr;<em>J</em>, <em>J</em>&rarr;<em>N&prime;</em>), producing dense per-state tuples.
+        <strong style="color:#777;">(e) Algorithm (RPRO):</strong> <em>a<sup>&theta;</sup>, a<sup>ref</sup></em> from <em>&pi;<sub>&theta;</sub></em> and frozen <em>&pi;<sub>ref</sub></em> are compared against <em>a<sup>w</sup>/a<sup>l</sup></em> to drive <em>r<sup>w</sup></em>&uarr;, <em>r<sup>l</sup></em>&darr;, optimized on a mixed batch of <em>D</em><sub>pref</sub><sup>k</sup>, <em>D</em><sub>pref</sub><sup>&lt;k</sup>, and <em>D</em><sub>SFT</sub>; the updated policy is redeployed for <em>K</em> rounds.
+      </p>
 
     </div>
   </div>
@@ -317,52 +313,327 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Real-Robot Demos</h2>
       <p class="has-text-centered" style="color:#666; margin-bottom: 1.6em;">
-        Demo videos will be released alongside the paper. The grid below previews where the rollouts of the four tasks will appear.
+        Rollout videos of the four real-robot tasks. Click play to watch.
       </p>
 
       <div class="columns is-multiline">
         <div class="column is-half">
-          <div class="video-placeholder">
-            <span class="icon-big"><i class="fas fa-play-circle"></i></span>
-            <div class="label-main">Pack &mdash; cosmetic packaging</div>
-            <div class="label-sub">Demo coming soon</div>
+          <div class="publication-video">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/cosmetic%20packaging.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
+          <p class="has-text-centered" style="margin-top: 0.5em;">
+            <strong>Pack</strong> &mdash; cosmetic packaging
+          </p>
         </div>
         <div class="column is-half">
-          <div class="video-placeholder">
-            <span class="icon-big"><i class="fas fa-play-circle"></i></span>
-            <div class="label-main">Cap &mdash; pen-cap assembly</div>
-            <div class="label-sub">Demo coming soon</div>
+          <div class="publication-video">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/pen-cap%20assembly.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
+          <p class="has-text-centered" style="margin-top: 0.5em;">
+            <strong>Cap</strong> &mdash; pen-cap assembly
+          </p>
         </div>
         <div class="column is-half">
-          <div class="video-placeholder">
-            <span class="icon-big"><i class="fas fa-play-circle"></i></span>
-            <div class="label-main">USB &mdash; USB insertion</div>
-            <div class="label-sub">Demo coming soon</div>
+          <div class="publication-video">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/USB%20insertion.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
+          <p class="has-text-centered" style="margin-top: 0.5em;">
+            <strong>USB</strong> &mdash; USB insertion
+          </p>
         </div>
         <div class="column is-half">
-          <div class="video-placeholder">
-            <span class="icon-big"><i class="fas fa-play-circle"></i></span>
-            <div class="label-main">Case &mdash; pencil-case packing</div>
-            <div class="label-sub">Demo coming soon</div>
+          <div class="publication-video">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/pencil-case%20packing.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
+          <p class="has-text-centered" style="margin-top: 0.5em;">
+            <strong>Case</strong> &mdash; pencil-case packing
+          </p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <!--
-        ===== When videos are ready, replace each .video-placeholder block above with:
+<!-- ======================================================== Before vs. After FlowPRO ======================================================== -->
+<section class="section hero is-light" id="comparison">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Policy Improvement: Before vs. After FlowPRO</h2>
+    <p class="has-text-justified" style="color:#555; margin-bottom: 2em;">
+      Each clip places the base flow-matching VLA (<em>Before RL</em>) and the FlowPRO-finetuned policy
+      (<em>After RL</em>) <strong>side by side under identical initial conditions</strong>, so the improvement
+      in success rate, stability, and motion smoothness is directly visible.
+    </p>
 
-        <div class="publication-video">
-          <iframe width="560" height="315"
-                  src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                  title="FlowPRO Pack demo"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen></iframe>
+    <!-- Pack -->
+    <div style="margin-bottom: 2.2em;">
+      <div class="has-text-centered">
+        <span class="compare-task-title">Pack &mdash; cosmetic packaging</span>
+      </div>
+      <div class="compare-video">
+        <video controls preload="metadata" playsinline>
+          <source src="static/videos/compare/cosmetic%20packaging/cosmetic%20packaging-1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- Cap -->
+    <div style="margin-bottom: 2.2em;">
+      <div class="has-text-centered">
+        <span class="compare-task-title">Cap &mdash; pen-cap assembly</span>
+      </div>
+      <div class="compare-video">
+        <video controls preload="metadata" playsinline>
+          <source src="static/videos/compare/pen-cap%20assembly/pen-cap%20assembly-1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- USB -->
+    <div style="margin-bottom: 2.2em;">
+      <div class="has-text-centered">
+        <span class="compare-task-title">USB &mdash; USB insertion</span>
+      </div>
+      <div class="compare-video">
+        <video controls preload="metadata" playsinline>
+          <source src="static/videos/compare/USB%20insertion/USB%20insertion-1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- Case -->
+    <div style="margin-bottom: 0.5em;">
+      <div class="has-text-centered">
+        <span class="compare-task-title">Case &mdash; pencil-case packing</span>
+      </div>
+      <div class="compare-video">
+        <video controls preload="metadata" playsinline>
+          <source src="static/videos/compare/pencil-case%20packing/pencil-case%20packing-1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== Experimental Results ======================================================== -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Experimental Results</h2>
+    <p class="has-text-justified" style="color:#555; margin-bottom: 1.8em;">
+      We evaluate FlowPRO on a Dobot XTrainer bimanual platform across the four long-horizon tasks above,
+      using two flow-matching VLA backbones (&pi;<sub>0</sub> and &pi;<sub>0.5</sub>) as base policies.
+      Each entry is averaged over <strong>3 training seeds × 100 randomized rollouts</strong> per seed.
+      <!-- Two questions are addressed below:
+      <strong>(Q1)</strong> does RPRO surpass representative baselines, and
+      <strong>(Q3&ndash;Q4)</strong> how much does each loss component contribute? -->
+    </p>
+
+    <!-- ============== Q1: Final Success Rates (Table 1 condensed) ============== -->
+    <h3 class="title is-4" style="margin-top: 1.2em;">Final Success Rate after 3 Rounds of Fine-tuning</h3>
+    <!-- <p class="has-text-justified" style="color:#555;">
+      RPRO <strong>strictly dominates every baseline on all 8 task&ndash;backbone strata</strong>
+      (Bonferroni-corrected one-sided Cochran&ndash;Mantel&ndash;Haenszel test, <em>p</em> &lt; 10<sup>&minus;3</sup>
+      against each of DAgger, DAgger-Buffered, &pi;<sub>0.6</sub>*, and TPO). The condensed view below reports
+      mean success rate (SR, %) across 3 seeds; standard deviations and completion times are deferred to the paper.
+    </p> -->
+
+    <div class="table-container" style="margin-top: 1em;">
+      <table class="table is-fullwidth is-striped is-hoverable has-text-centered" style="font-size: 0.95rem;">
+        <thead>
+          <tr>
+            <th rowspan="2" style="vertical-align: middle;">Base Policy</th>
+            <th rowspan="2" style="vertical-align: middle;">Fine-tune</th>
+            <th colspan="4">Success Rate (%) &uarr; &nbsp;<span style="font-weight: normal; color:#777; font-size: 0.85rem;">(mean &plusmn; std across 3 seeds)</span></th>
+          </tr>
+          <tr>
+            <th>PACK</th><th>CAP</th><th>USB</th><th>CASE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- PI0 block -->
+          <tr><td rowspan="5" style="vertical-align: middle; font-weight: 600;">&pi;<sub>0</sub></td>
+              <td>DAgger</td>
+              <td>88.0 <small style="color:#777;">&plusmn;1.3</small></td>
+              <td>83.0 <small style="color:#777;">&plusmn;3.0</small></td>
+              <td>80.0 <small style="color:#777;">&plusmn;2.8</small></td>
+              <td>83.0 <small style="color:#777;">&plusmn;2.6</small></td></tr>
+          <tr><td>DAgger-Buffered</td>
+              <td>90.0 <small style="color:#777;">&plusmn;2.0</small></td>
+              <td>89.0 <small style="color:#777;">&plusmn;2.4</small></td>
+              <td>85.0 <small style="color:#777;">&plusmn;1.6</small></td>
+              <td>89.0 <small style="color:#777;">&plusmn;2.2</small></td></tr>
+          <tr><td>&pi;<sub>0.6</sub>*</td>
+              <td>94.0 <small style="color:#777;">&plusmn;1.5</small></td>
+              <td>91.0 <small style="color:#777;">&plusmn;1.8</small></td>
+              <td>90.0 <small style="color:#777;">&plusmn;3.2</small></td>
+              <td>90.0 <small style="color:#777;">&plusmn;1.4</small></td></tr>
+          <tr><td>TPO</td>
+              <td>92.0 <small style="color:#777;">&plusmn;1.7</small></td>
+              <td>94.0 <small style="color:#777;">&plusmn;2.2</small></td>
+              <td>87.0 <small style="color:#777;">&plusmn;1.7</small></td>
+              <td>88.0 <small style="color:#777;">&plusmn;2.3</small></td></tr>
+          <tr style="background:#eaf3ff; font-weight: 600;">
+              <td>RPRO (ours)</td>
+              <td>99.0 <small style="color:#555;">&plusmn;1.0</small></td>
+              <td>98.0 <small style="color:#555;">&plusmn;1.5</small></td>
+              <td>92.0 <small style="color:#555;">&plusmn;1.5</small></td>
+              <td>93.0 <small style="color:#555;">&plusmn;2.0</small></td></tr>
+          <!-- PI0.5 block -->
+          <tr><td rowspan="5" style="vertical-align: middle; font-weight: 600;">&pi;<sub>0.5</sub></td>
+              <td>DAgger</td>
+              <td>86.0 <small style="color:#777;">&plusmn;2.5</small></td>
+              <td>86.0 <small style="color:#777;">&plusmn;2.3</small></td>
+              <td>82.0 <small style="color:#777;">&plusmn;3.4</small></td>
+              <td>85.0 <small style="color:#777;">&plusmn;3.3</small></td></tr>
+          <tr><td>DAgger-Buffered</td>
+              <td>93.0 <small style="color:#777;">&plusmn;1.3</small></td>
+              <td>92.0 <small style="color:#777;">&plusmn;1.5</small></td>
+              <td>89.0 <small style="color:#777;">&plusmn;2.1</small></td>
+              <td>87.0 <small style="color:#777;">&plusmn;2.4</small></td></tr>
+          <tr><td>&pi;<sub>0.6</sub>*</td>
+              <td>92.0 <small style="color:#777;">&plusmn;2.8</small></td>
+              <td>94.0 <small style="color:#777;">&plusmn;1.3</small></td>
+              <td>93.0 <small style="color:#777;">&plusmn;1.9</small></td>
+              <td>88.0 <small style="color:#777;">&plusmn;2.7</small></td></tr>
+          <tr><td>TPO</td>
+              <td>95.0 <small style="color:#777;">&plusmn;1.6</small></td>
+              <td>93.0 <small style="color:#777;">&plusmn;2.8</small></td>
+              <td>91.0 <small style="color:#777;">&plusmn;2.4</small></td>
+              <td>90.0 <small style="color:#777;">&plusmn;1.5</small></td></tr>
+          <tr style="background:#eaf3ff; font-weight: 600;">
+              <td>RPRO (ours)</td>
+              <td>99.0 <small style="color:#555;">&plusmn;1.0</small></td>
+              <td>99.0 <small style="color:#555;">&plusmn;1.0</small></td>
+              <td>95.0 <small style="color:#555;">&plusmn;1.6</small></td>
+              <td>93.0 <small style="color:#555;">&plusmn;1.2</small></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="has-text-centered" style="color:#777; font-size: 0.88rem; margin-top: -0.4em;">
+      <strong style="color:#777;">Table 1 (condensed).</strong> SR is reported as mean &plusmn; std (in pp) across 3 training seeds,
+      with each per-seed SR computed over <em>n</em>&thinsp;=&thinsp;100 randomized rollouts. RPRO is highlighted;
+      completion-time columns are in the paper.
+    </p>
+
+    <!-- ============== Q1: Per-iteration SR curves ============== -->
+    <h3 class="title is-4" style="margin-top: 2.2em;">Per-iteration Success-Rate Curves</h3>
+    <!-- <p class="has-text-justified" style="color:#555;">
+      Across all four tasks, RPRO improves the fastest per round and reaches the highest plateau, while baselines
+      either stagnate (DAgger), recover slowly (DAgger-Buffered), or trade off across rounds (&pi;<sub>0.6</sub>*, TPO).
+      Iteration 0 is the shared SFT checkpoint.
+    </p> -->
+    <div style="margin-top: 1em;">
+      <div style="margin-bottom: 1.5em;">
+        <figure class="image">
+          <img src="static/images/result/pi0.png" alt="Per-iteration SR with PI0 as base policy"
+               style="width: 100%; border-radius: 6px;">
+        </figure>
+        <p class="has-text-centered" style="color:#555; font-size: 0.9rem; margin-top: 0.4em;">
+          (a) Base policy: &pi;<sub>0</sub>
+        </p>
+      </div>
+      <div>
+        <figure class="image">
+          <img src="static/images/result/pi05.png" alt="Per-iteration SR with PI0.5 as base policy"
+               style="width: 100%; border-radius: 6px;">
+        </figure>
+        <p class="has-text-centered" style="color:#555; font-size: 0.9rem; margin-top: 0.4em;">
+          (b) Base policy: &pi;<sub>0.5</sub>
+        </p>
+      </div>
+    </div>
+    <p class="has-text-centered" style="color:#777; font-size: 0.88rem;">
+      Figure 3. Per-iteration success rates (SR) on the four real-robot tasks across iterative post-training rounds.
+    </p>
+
+    <!-- ============== Q3 & Q4: Loss-Component Ablations ============== -->
+    <h3 class="title is-4" style="margin-top: 2.2em;">Loss-Component Ablations (PACK)</h3>
+    <p class="has-text-justified" style="color:#555;">
+      We progressively strip components from the full RPRO objective &mdash; <strong>RPRO</strong> &rarr;
+      <strong>PRO</strong> (no SFT term) &rarr; <strong>DPO+SFT</strong> (no proximal regularizer) &rarr;
+      <strong>DPO</strong> (neither) &mdash; and also compare against <strong>SFT</strong> (no contrastive term).
+      The diagnostic implicit-reward dynamics reveal a clean explanation for why plain Flow-DPO collapses:
+    </p>
+    <div style="margin-top: 1em;">
+      <div style="margin-bottom: 1.2em;">
+        <figure class="image">
+          <img src="static/images/result/loss_component_compare_a.png" alt="Per-step implicit reward dynamics on positive and negative actions"
+               style="width: 100%; border-radius: 6px;">
+        </figure>
+        <p class="has-text-centered" style="color:#555; font-size: 0.9rem; margin-top: 0.4em;">
+          (a) Per-step implicit reward on positive (<em>r</em><sup>w</sup>) and negative (<em>r</em><sup>l</sup>) actions during training.
+        </p>
+      </div>
+      <div>
+        <figure class="image">
+          <img src="static/images/result/loss_component_compare_b.png" alt="Task SR under ID and OOD initial conditions"
+               style="width: 100%; border-radius: 6px;">
+        </figure>
+        <p class="has-text-centered" style="color:#555; font-size: 0.9rem; margin-top: 0.4em;">
+          (b) Task SR under in-distribution (ID) and out-of-distribution (OOD) initial conditions.
+        </p>
+      </div>
+    </div>
+    <p class="has-text-centered" style="color:#777; font-size: 0.88rem; margin-top: 0.5em;">
+      <strong style="color:#777;">Figure 4.</strong> Loss-component ablations of RPRO on the PACK task.
+      (a) Per-step implicit reward on positive (<em>r</em><sup>w</sup>) and negative (<em>r</em><sup>l</sup>)
+      actions during training. (b) Task SR under in-distribution (ID) and out-of-distribution (OOD) initial conditions.
+    </p>
+
+    <!-- <div class="columns" style="margin-top: 1.2em;">
+      <div class="column">
+        <div class="content has-text-justified" style="color:#444;">
+          <p><strong>RPRO vs. PRO</strong> (removes <em>L</em><sub>SFT</sub>).
+          The SFT anchor explicitly fits &pi;<sub>&theta;</sub> to <em>a</em><sup>w</sup> in the flow-matching regression
+          sense, accelerating convergence and mitigating catastrophic forgetting.
+          <strong>SR drops 94%&rarr;88% (ID) and 91%&rarr;81% (OOD).</strong></p>
+
+          <p><strong>RPRO vs. SFT</strong> (removes <em>L</em><sub>PRO</sub>).
+          SFT alone only imitates positive actions and never sees what <em>not</em> to do; RPRO's contrastive term
+          provides an explicit push-away gradient from <em>a</em><sup>l</sup>.
+          The benefit is largest under OOD: <strong>SR drops to 90% (ID) / 75% (OOD)</strong>.</p>
         </div>
-      -->
+      </div>
+      <div class="column">
+        <div class="content has-text-justified" style="color:#444;">
+          <p><strong>RPRO vs. DPO+SFT</strong> (removes <em>L</em><sub>reg</sub>).
+          Without the proximal regularizer, <em>r</em><sup>l</sup> runs away into an unbounded regime while the SFT
+          anchor keeps <em>r</em><sup>w</sup> deceptively high &mdash; a <em>unilateral runaway</em> that contaminates
+          the rollout distribution. <strong>SR drops to 87% (ID) / 70% (OOD).</strong></p>
+
+          <p><strong>RPRO vs. DPO</strong> (removes both anchors).
+          Plain Flow-DPO collapses: <em>r</em><sup>w</sup> itself drives below zero and falls to the
+          &minus;10<sup>2</sup> scale &mdash; &pi;<sub>&theta;</sub> ends up <em>farther</em> from <em>a</em><sup>w</sup>
+          than the reference policy. <strong>SR collapses to 13% (ID) / 5% (OOD).</strong></p>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- ============== Takeaways ============== -->
+    <div class="notification is-light" style="margin-top: 2em; border-left: 4px solid #4a6cf7;">
+      <p class="has-text-justified">
+        <strong>Takeaways.</strong>
+        (1) Across <strong>8 task&ndash;backbone strata</strong>, RPRO wins every single one, with the largest
+        gains on the hardest precision and deformable tasks.
+        (2) The <strong>proximal regularizer</strong> is what makes preference optimization usable for flow-matching
+        VLAs &mdash; without it, the implicit reward on positive actions runs away and the policy degrades.
+        (3) The <strong>SFT anchor</strong> further accelerates convergence and prevents forgetting.
+      </p>
     </div>
   </div>
 </section>
