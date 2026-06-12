@@ -111,18 +111,88 @@
     .copy-btn {
       margin-top: 10px;
     }
+
+    /* ---------- Hero with video background ---------- */
+    .hero-video-bg {
+      position: relative;
+      width: 100%;
+      min-height: 560px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero-video-bg > video.bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    /* dark overlay to keep text readable on top of video */
+    .hero-video-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-video-bg .hero-body {
+      position: relative;
+      z-index: 2;
+      padding-top: 5.5rem;
+      padding-bottom: 5.5rem;
+    }
+    /* Title styling on dark video background */
+    .hero-video-bg .publication-title {
+      color: #ffffff;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .hero-video-bg .title-highlight {
+      color: #ea740c;          /* bright cyan-blue accent like the reference */
+      font-weight: 800;
+      font-size: 1.5em;        /* enlarge the project name relative to subtitle */
+      letter-spacing: 0.01em;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+    }
+    .hero-video-bg .publication-authors,
+    .hero-video-bg .publication-authors span {
+      color: #f1f5f9;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+    }
+    .hero-video-bg .publication-authors sup { color: #cfe7ff; }
+    .hero-video-bg .publication-authors a { color: #7cc4ff !important; }
+    /* Buttons: translucent dark pill on video */
+    .hero-video-bg .publication-links .button.is-dark {
+      background: rgba(30, 30, 30, 0.78);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+      backdrop-filter: blur(2px);
+    }
+    .hero-video-bg .publication-links .button.is-dark:hover {
+      background: rgba(50, 50, 50, 0.92);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
   </style>
 </head>
 <body>
 
 <!-- ======================================================== Hero / Title ======================================================== -->
-<section class="hero">
+<section class="hero hero-video-bg">
+  <!-- Background video (auto-play, muted, loop, plays inline) -->
+  <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="">
+    <source src="static/videos/teaser_under.mp4" type="video/mp4">
+  </video>
   <div class="hero-body">
-    <div class="container is-max-desktop">
+    <div class="container is-max-widescreen">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">
-            FlowPRO: Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs via Proximalized Preference Optimization
+          <h1 class="title is-2 publication-title" style="text-align: center;">
+            <span class="title-highlight">FlowPRO</span>:<br>
+            <span style="white-space: nowrap;">Reward-Free Reinforced Fine-Tuning of Flow-Matching VLAs</span><br>
+            via Proximalized Preference Optimization
           </h1>
 
           <div class="is-size-5 publication-authors">
@@ -197,7 +267,7 @@
 
 <!-- ======================================================== Teaser video (YouTube) ======================================================== -->
 <section class="hero teaser">
-  <div class="hero-body">
+  <div class="hero-body" style="padding-top: 3.5rem; padding-bottom: 3rem;">
     <div class="container is-max-desktop">
       <div class="publication-video"
            style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.12);">
@@ -320,7 +390,7 @@
         <div class="column is-half">
           <div class="publication-video">
             <video controls preload="metadata" playsinline>
-              <source src="static/videos/cosmetic%20packaging.mp4" type="video/mp4">
+              <source src="static/videos/x3/cosmetic%20packaging.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -331,7 +401,7 @@
         <div class="column is-half">
           <div class="publication-video">
             <video controls preload="metadata" playsinline>
-              <source src="static/videos/pen-cap%20assembly.mp4" type="video/mp4">
+              <source src="static/videos/x3/pen-cap%20assembly.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -342,7 +412,7 @@
         <div class="column is-half">
           <div class="publication-video">
             <video controls preload="metadata" playsinline>
-              <source src="static/videos/USB%20insertion.mp4" type="video/mp4">
+              <source src="static/videos/x3/USB%20insertion.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -353,7 +423,7 @@
         <div class="column is-half">
           <div class="publication-video">
             <video controls preload="metadata" playsinline>
-              <source src="static/videos/pencil-case%20packing.mp4" type="video/mp4">
+              <source src="static/videos/x3/pencil-case%20packing.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
